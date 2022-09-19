@@ -379,8 +379,7 @@
   <script>
     // import moment from 'moment'
     export default {
-        layout: 'main',
-    
+        layout: 'b-component/main',
         mounted() {
             console.log(this.$moment) // undefined $moment
         },

@@ -15,9 +15,22 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap' },
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Mate&display=swap' },
-    ]
+    ],
+    script: [
+      {
+        src: "https://code.jquery.com/jquery-3.6.0.min.js",
+        type: "text/javascript",
+        crossorigin: "anonymous"
+      },
+      { 
+        src: '/js/app.js', 
+        type: 'text/javascript' ,
+        async: true,
+      },
+    ],
   },
-
+  
+  
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     { src: '~/assets/css/style.css', lang: 'css' },

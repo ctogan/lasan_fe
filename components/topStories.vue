@@ -1,5 +1,4 @@
 <template>
-
 <div class="top-stories">
     <h2>Top Stories</h2>
     <div class="stories">
@@ -72,5 +71,10 @@
         </a>
     </div>
 </div>
-
 </template>
+
+<script>
+    export default {
+        name : 'NuxtTopStories'
+    }
+</script>
