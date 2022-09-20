@@ -1,5 +1,5 @@
 <template>
-   <div class="container-fluid d-flex justify-between mt-6 mb-8">
+   <div class="container-fluid d-flex justify-between mb-8">
         <div class="content flex-1 mr-6">
             <div class="editor-section">
                 <div class="d-flex justify-between">
@@ -94,7 +94,7 @@
             }
          },
          mounted() {
-            //console.log($nuxt.$route.name)
+            console.log($nuxt.$route.name)
          },
         
     }
