@@ -25,13 +25,13 @@ Request :
             {
                 "name" : "string",
                 "occupation" : "string",
-                "uuid" : "stirng",
+                "uuid" : "string",
                 "is_followed" : "boolean" 
             },
             {
                 "name" : "string",
                 "occupation" : "string",
-                "uuid" : "stirng",
+                "uuid" : "string",
                 "is_followed" : "boolean" 
             }
         ]
