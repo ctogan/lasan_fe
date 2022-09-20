@@ -19,6 +19,12 @@
         return {
           banners: []
         }
-      }
+      },
+      mounted() {
+        
+      },
+      methods: {
+        
+      },
     }
 </script>

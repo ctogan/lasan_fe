@@ -149,17 +149,37 @@ $('.controls a').on('click', function (e) {
         document.execCommand($(this).data('role'), false);
     }
 });
-document.querySelector("div[contenteditable]").addEventListener("paste", function (e) {
-    e.preventDefault();
-    var text = e.clipboardData.getData("text/plain");
-    document.execCommand("insertHTML", false, text);
-});
-document.querySelector("div[contenteditable]").addEventListener('keypress', function(ev){
-    console.log(ev);
-    if(ev.keyCode === 13){
-        // document.execCommand('formatBlock', false, 'p');
-    }
-}, false);
+var paste = document.getElementById("div[contenteditable]");
+
+if(paste){
+    document.querySelector("div[contenteditable]").addEventListener("paste", function (e) {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertHTML", false, text);
+    });
+    
+    document.querySelector("div[contenteditable]").addEventListener('keypress', function(ev){
+        console.log(ev);
+        if(ev.keyCode === 13){
+            // document.execCommand('formatBlock', false, 'p');
+        }
+    }, false);
+}
+// var keypress = document.getElementById("div[contenteditable]");
+
+// document.querySelector("div[contenteditable]").addEventListener("paste", function (e) {
+//     e.preventDefault();
+//     var text = e.clipboardData.getData("text/plain");
+//     document.execCommand("insertHTML", false, text);
+// });
+
+// document.querySelector("div[contenteditable]").addEventListener('keypress', function(ev){
+//     console.log(ev);
+//     if(ev.keyCode === 13){
+//         // document.execCommand('formatBlock', false, 'p');
+//     }
+// }, false);
+
 $('.pick-image').on('click', function (){
    $(this).toggleClass('choosen');
 });
