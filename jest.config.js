@@ -18,5 +18,6 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue'
   ],
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  preset: '@nuxt/test-utils'
 }

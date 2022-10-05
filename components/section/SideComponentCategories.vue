@@ -1,20 +1,31 @@
 <template>
     <div class="side-menu-item list-categories">
         <h3 class="title">Topik Pilihan Kamu</h3>
-        <ul>
-            <li><a class="btn category" href="">Art</a></li>
-            <li><a class="btn category" href="">IT</a></li>
-            <li><a class="btn category" href="">Design</a></li>
-            <li><a class="btn category" href="">BlockChain</a></li>
-            <li><a class="btn category" href="">Lifestyle</a></li>
-            <li><a class="btn category" href="">UI/UX</a></li>
-            <li><a class="btn category" href="">Finance</a></li>
+        <ul v-if="list">
+            <li v-for="(item , index) in list" :key="index">
+                <nuxt-link v-if="item.slug != ''" :to="item.slug" class="btn category">{{item.topic}}</nuxt-link>
+                <a href="#" v-else class="btn category">{{item.topic}}</a>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
     export default {
-        name : "NuxtSideComponentCatefories"
+        name : "NuxtSideComponentCatefories",
+        data(){
+            return{
+                list : []
+            }
+            
+        },
+        // created() {
+        //     this.$store.dispatch('topic/getList')
+        //     .then((response) => {
+        //         this.list = response
+        //         console.log(this.list)
+        //     })
+        // }
     }
+
 </script>

@@ -13,40 +13,37 @@
         </div>
         <div class="list-article">
             <ul>
-                <li v-for="index in 6" :key="index">
+                <li v-for="(item ,index) in list" :key="index">
                     <div class="item-article">
                         <div class="snippet">
                             <div class="profile">
                                 <div class="avatar-sm has-story">
-                                    <img src="/images/avatar.png" alt="">
+                                    <img :src="item.author.avatar" alt="">
                                 </div>
                                 <div class="name">
                                     <a href="/@agust.tampubolon">
-                                        Alice Kurt
+                                        {{item.author.name}}
                                     </a>
                                 </div>
                                 <a class="more" href="more">
                                     <div class="dot"></div>
                                 </a>
                             </div>
-                            <NuxtLink to="/detail">
+                            <NuxtLink :to="'/artcile/'+item.slug">
                                 <div class="title">
                                     <h3>
-                                        Lorem ipsum dolor sit amet, consectetur sed do elit sed do eiusmod
-                                        tempor incid.
+                                        {{item.title}}
                                     </h3>
                                     <p>
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum.
-                                        aute irure dolor.
+                                        {{item.short_description}}
                                     </p>
                                 </div>
                             </NuxtLink>
                             <div class="bottom">
                                 <div class="info">
-                                    <span class="topic-name">Music</span>
-                                    <span class="date">12 June 2022</span>
-                                    <span class="read-time">2 min read</span>
+                                    <span class="topic-name">{{item.categories.topic_name}}</span>
+                                    <span class="date">{{$moment(item.date).format('D MMMM YYYY')}}</span>
+                                    <span class="read-time">{{item.read_calculation}} minute</span>
                                 </div>
                                 <div class="action">
                                     <a class="share" href="">
@@ -59,7 +56,7 @@
                             </div>
                         </div>
                         <div class="image">
-                            <img src="/images/image1.jpg" alt="">
+                            <img :src="item.image" alt="">
                         </div>
                     </div>
                 </li>
@@ -69,6 +66,23 @@
 </template>
 <script>
 export default {
-    name : "NuxtListArticles"
+    name : "NuxtListArticles",
+    data(){
+        return {
+            list : {},
+            page : 1
+        }
+    },
+    created() {
+        this.listOfData()
+    },
+    methods: {
+        listOfData (){
+            this.$store.dispatch('article/getList' , this.page).then((response) => {
+                this.list = response
+                console.log(this.response)
+            })
+        }
+    },
 }
 </script>

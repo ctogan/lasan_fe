@@ -770,7 +770,7 @@ Request :
 ```json
 {
     "token" : "string",
-    "slug" : "integer",
+    "slug" : "string",
     "action" : "string"
 }
 ```

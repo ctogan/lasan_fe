@@ -39,6 +39,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/services.js',
+    '~/plugins/interceptor.js',
+    // '~/plugins/axios.js',
+     '~/plugins/Api.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,14 +50,63 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/composition-api/module',
+    '@nuxtjs/moment'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/moment',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
+    '@nuxtjs/auth-next'
   ],
+  router: {
+    //middleware: ['auth']
+  },
+  auth: {
+    // redirect: {
+    //   callback: 'http://localhost:3001/api/auth/',
+    //   logout: '/signed-out'
+    // },
+    strategies: {
+      google : {
+        clientId:'466171963780-if78nhnamd4if7uadurdiijp7v2spcoh.apps.googleusercontent.com',
+        codeChallengeMethod: '',
+        responseType: 'code',
+        endpoints: {
+          token: 'http://localhost:3001/api/auth/google', 
+          userInfo: 'http://localhost:3001/api/user/profile' ,
+          //callback: '/auth/gmail',
+        },
+      },
+    }
+  },
+  axios: {
+    //proxy: true,
+    baseURL: 'http://127.0.0.1:3001',
+   // prefix: '/api/'
+  },
+  
+  publicRuntimeConfig: {
+    // axios: {
+    //   browserBaseURL: process.env.BROWSER_BASE_URL
+    // }
+  },
+  devtools: true,
+
+  privateRuntimeConfig: {
+    // axios: {
+    //   baseURL: process.env.BASE_URL
+    // }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  moment : {
+    defaultLocale: 'en',
+    locales: ['id'],
+    timezone: true
   }
 }

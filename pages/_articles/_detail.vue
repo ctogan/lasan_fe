@@ -1,19 +1,19 @@
 <template>
-   <div class="flex-1 mr-6">
-        <div class="detail-article mb-6">
+    <div class="flex-1 mr-6">
+        <div class="detail-article mb-6" v-if="details">
             <div class="d-flex mb-8 align-center">
                 <div class="profile">
                     <div class="avatar-md">
-                        <img src="~/assets/images/avatar.png" alt="">
+                        <Avatar :link="details.author.avatar" :alt="details.author.name" />
                     </div>
                     <div class="user">
-                        <div class="name">John Doe</div>
-                        <div class="info">Interior</div>
+                        <div class="name">{{details.author.name}}</div>
+                        <div class="info">{{details.categories.name}}</div>
                     </div>
                 </div>
                 <div class="action">
-                    <a class="like" href="">
-                        <img src="~/assets/images/heart-off.svg" alt="">
+                    <a class="like" href="javascript::void(0)">
+                        <ActionLike :details="details"/>
                     </a>
                     <a class="more" href="more">
                         <div class="dot"></div>
@@ -21,73 +21,18 @@
                 </div>
             </div>
             <article>
-                <h1 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor
-                    incididunt ut
-                    labore.
-                </h1>
+                <h1 class="title">{{details.title}}</h1>
                 <img class="mb-8" src="~/assets/images/detail-img.jpg" alt="" width="100%">
                 <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio necessitatibus
-                        quod
-                        voluptatibus. Corrupti, aliquam labore? Laborum voluptatibus molestias nihil
-                        accusamus,
-                        exercitationem quae esse sunt totam debitis voluptate consequuntur quo explicabo qui
-                        architecto
-                        repudiandae commodi, quibusdam neque sit quia consectetur odio provident distinctio!
-                        Tenetur
-                        quod quaerat illo doloremque molestias animi culpa ut quisquam non libero ipsum
-                        sapiente
-                        itaque
-                        at praesentium suscipit repellendus accusamus aliquid, voluptate ipsam consectetur
-                        dolorem
-                        quibusdam. Porro a nam magni voluptatem corporis velit id laudantium laboriosam eos
-                        tenetur
-                        dolorem dolor blanditiis, libero dignissimos odit provident quaerat esse dolore
-                        mollitia?
-                        Aut
-                        consequatur id aspernatur temporibus quaerat tempore consequuntur praesentium!</p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nihil ad vel
-                        nesciunt
-                        amet
-                        quae. Alias beatae similique perspiciatis repellendus laborum, itaque fugit dolor
-                        consequatur at
-                        blanditiis accusantium, numquam hic velit autem exercitationem magni saepe,
-                        distinctio
-                        impedit
-                        excepturi vitae. Maiores unde dolorum, ab dolor debitis iste esse in amet quibusdam!
-                    </p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, repellat. Facere
-                        dolores
-                        mollitia aperiam quam eligendi laborum adipisci minus. Ex nesciunt dignissimos
-                        dolore
-                        facilis
-                        fuga commodi magni sequi officiis! Asperiores, suscipit quisquam incidunt ea nostrum
-                        iusto
-                        ullam
-                        laboriosam dolorum aspernatur est libero animi atque pariatur distinctio vitae at
-                        labore
-                        eos
-                        omnis dicta, optio earum laudantium provident veritatis fugiat? Minima tempora
-                        laboriosam
-                        molestias. Voluptatum itaque aliquid deleniti nesciunt obcaecati quae eaque dolore
-                        at
-                        explicabo
-                        temporibus sit dolorem, velit blanditiis esse earum deserunt! Obcaecati commodi,
-                        assumenda,
-                        expedita temporibus eaque repudiandae ea nobis labore aut, quas modi error impedit
-                        consequatur.
-                        Ad, non totam.</p>
+                    {{details.article}}
                 </div>
             </article>
             <div class="action-detail">
                 <div>
                     <ul>
-                        <li><a href=""><img src="~/assets/images/eye-open.svg" alt="" class="mr-1">23K</a></li>
-                        <li><a href=""><img src="~/assets/images/thumb.svg" alt="" class="mr-1">10K</a></li>
-                        <li><a href=""><img src="~/assets/images/message.svg" alt="" class="mr-1">2K</a></li>
+                        <li><a href=""><img src="~/assets/images/eye-open.svg" alt="" class="mr-1">{{details.total_views}}</a></li>
+                        <li><a href=""><img src="~/assets/images/thumb.svg" alt="" class="mr-1">{{details.total_likes}}</a></li>
+                        <li><a href=""><img src="~/assets/images/message.svg" alt="" class="mr-1">{{details.total_comment}}</a></li>
                     </ul>
                 </div>
                 <div>
@@ -313,22 +258,41 @@
         <Comment/>
         <ActionDetail/>
     </div>  
-  </template>
+</template>
   
-  <script>
-    
+  <script lang="ts">
+    import { mapMutations , mapGetters , mapState } from 'vuex';
     export default {
+        computed: {
+            // details () {
+            //    // return this.$store.state.articles.getDetails
+            // },
+            // // ...mapGetters(['article/getDetails']),
+            // // ...mapState({
+            // //     details: state => state
+            // // })
+            // todos () {
+            //     return this.$store.state.todos.list
+            // }
+            
+        },
         layout: 'w-component/Main',
-        components : {
-        },
-        mounted() {
-            //console.log(this.$moment) // undefined $moment
-        },
         data() {
             return {
-                articles: [],
+                paramss : this.$route.params.detail
             }
-         },
+        },
+        async asyncData({store , params}) {
+            const details = await store.dispatch('article/getDetails' , params.detail)
+            .then((response) => {
+                console.log(response)
+                return  response
+            })
+            return { details }
+        },
+        created() {
+           //console.log(this.details)
+        },
     }
   </script>
    

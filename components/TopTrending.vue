@@ -3,7 +3,7 @@
     <h2>Yang lagi Trending</h2>
     <div class="trending">
         <ul class="list-trending">
-            <li v-for="index in 4" :key="index">
+            <li v-for="item in datas" :key="index">
                 <div class="item">
                     <div class="row">
                         <div class="description">
@@ -41,6 +41,20 @@
 
 <script>
     export default {
-        name : 'NuxtTopTrending'
+        name : 'NuxtTopTrending',
+        data() {
+            return {
+                list : {},
+                datas :[]
+            }
+        },
+        async asyncData (ctx) {
+            // this.datas =  await ctx.app.$services.articles.findAll()
+            // console.log(datas)
+        },
+        mounted() {
+            // const data =  ctx.app.$services.articles.findAll()
+            // console.log(data)
+        },
     }
 </script>

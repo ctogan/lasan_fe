@@ -9,4 +9,4 @@
         layout : 'w-component/Main',
         name : 'NuxtNotification',
     }
-</script>
+</script> 
