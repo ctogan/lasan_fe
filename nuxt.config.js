@@ -75,9 +75,20 @@ export default {
         responseType: 'code',
         endpoints: {
           token: 'http://localhost:3001/api/auth/google', 
-          userInfo: 'http://localhost:3001/api/user/profile' ,
-          //callback: '/auth/gmail',
+          userInfo: 'http://localhost:3001/api/user/profile',
         },
+        token: {
+          property: 'accessToken',
+          type: 'Bearer',
+          maxAge: 86400
+        },
+        userInfo : {
+          property : false,
+          autoFetch : false
+        },
+        scope: ['openid', 'profile', 'email'],
+        grantType: 'authorization_code',
+        accessType : 'offline'
       },
     }
   },

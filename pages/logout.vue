@@ -8,7 +8,15 @@
 
   export default{
     middleware: ['auth'],
-    auth: false
+    auth: false,
+    created() {
+      this.logout()
+    },
+    methods: {
+      async logout() {
+        await this.$auth.logout();
+      },
+    },
   }
 
   </script>
