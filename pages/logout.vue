@@ -13,9 +13,7 @@
       this.logout()
     },
     methods: {
-      async logout() {
-        await this.$auth.logout();
-      },
+     
     },
   }
 

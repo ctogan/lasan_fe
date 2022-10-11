@@ -12,7 +12,10 @@
                                 <img src="~/assets/images/search-black.svg" alt="">
                             </a>
                         </li>
-                        <li class="mr-7"><a href="javascript:void()" class="btn-login">Sign In</a></li>
+                        <li class="mr-7"> 
+                            <a href="javascript::void(0)" class="btn-logins" v-if="$auth.loggedIn" v-on:click="logout" >{{$auth.user.data.email}}</a>
+                            <a href="javascript::void(0)" class="btn-login" v-else> Sign In</a>
+                        </li>
                         <li><a href="javascript:void()" class="btn btn-primary btn-register">Get Started</a></li>
                     </ul>
                 </nav>
@@ -22,6 +25,13 @@
 </template>
 <script>
     export default {
-        name : 'NuxtBHeader'
+        name : 'NuxtBHeader',
+        methods: {
+            async logout() {
+                await this.$auth.logout().then(() => {
+                    $router.push('/')
+                });
+            },
+        },  
     }
 </script>

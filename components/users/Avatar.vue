@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name : 'NuxtAvatar',
+    name : 'NuxtUsersAvatar',
     props : ['link' , 'alt']
 }
 </script>

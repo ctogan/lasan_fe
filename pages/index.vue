@@ -16,6 +16,7 @@
     export default {
         layout: "b-component/Main",
         mounted() {
+            console.log(this.$auth.loggedIn)
             //console.log(this.$store.dispatch('/article/getTrendings'))
             console.log(this.$moment); // undefined $moment
         },

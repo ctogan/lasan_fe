@@ -13,50 +13,50 @@
         </div>
         <div class="list-article">
             <ul>
-                <li v-for="(item ,index) in list" :key="index">
+                <li v-for="(article , index) in articles" :key="index">
+                    <!-- <MediumArticle :article="article"></MediumArticle> -->
                     <div class="item-article">
                         <div class="snippet">
                             <div class="profile">
                                 <div class="avatar-sm has-story">
-                                    <img :src="item.author.avatar" alt="">
+                                    <img :src="article.author.avatar" alt="">
                                 </div>
                                 <div class="name">
                                     <a href="/@agust.tampubolon">
-                                        {{item.author.name}}
+                                        {{article.author.name}}
                                     </a>
                                 </div>
                                 <a class="more" href="more">
                                     <div class="dot"></div>
                                 </a>
                             </div>
-                            <NuxtLink :to="'/artcile/'+item.slug">
+                            <NuxtLink :to="'/artcile/'+article.slug">
                                 <div class="title">
                                     <h3>
-                                        {{item.title}}
+                                        {{article.title}}
                                     </h3>
                                     <p>
-                                        {{item.short_description}}
+                                        {{article.short_description}}
                                     </p>
                                 </div>
                             </NuxtLink>
                             <div class="bottom">
                                 <div class="info">
-                                    <span class="topic-name">{{item.categories.topic_name}}</span>
-                                    <span class="date">{{$moment(item.date).format('D MMMM YYYY')}}</span>
-                                    <span class="read-time">{{item.read_calculation}} minute</span>
+                                    <span class="topic-name">{{article.categories.topic_name}}</span>
+                                    <span class="date">{{$moment(article.date).format('D MMMM YYYY')}}</span>
+                                    <span class="read-time">{{article.read_calculation}} minute</span>
                                 </div>
                                 <div class="action">
-                                    <a class="share" href="">
+                                    
+                                    <a class="share">
                                         <img src="/images/share.svg" alt="">
                                     </a>
-                                    <a class="like" href="">
-                                        <img src="/images/like.svg" alt="">
-                                    </a>
+                                    <Like :details="article" ></Like>
                                 </div>
                             </div>
                         </div>
                         <div class="image">
-                            <img :src="item.image" alt="">
+                            <img :src="article.image" alt="">
                         </div>
                     </div>
                 </li>
@@ -65,13 +65,18 @@
     </div>
 </template>
 <script>
+import {mapMutations} from 'vuex'
+import Like from '../components/action/Like.vue'
 export default {
     name : "NuxtListArticles",
     data(){
         return {
-            list : {},
+            articles : {},
             page : 1
         }
+    },
+    components : {
+        Like
     },
     created() {
         this.listOfData()
@@ -79,10 +84,9 @@ export default {
     methods: {
         listOfData (){
             this.$store.dispatch('article/getList' , this.page).then((response) => {
-                this.list = response
-                console.log(this.response)
+                this.articles = response
             })
-        }
+        },
     },
 }
 </script>

@@ -8,7 +8,7 @@
             <div class="auth-method">
                 <h2 class="title">Gabung Kami Yuk!</h2>
                 <div class="option">
-                    <a class="btn-auth" href=""><img src="/images/google.svg" alt="" width="24"> Sign Up With
+                    <a class="btn-auth" href="javascript::void(0)"  v-on:click="loginWithGoogle()"><img src="/images/google.svg" alt="" width="24"> Sign Up With
                         Google</a>
                     <a class="btn-auth" href=""><img src="/images/facebook.svg" alt="" width="24">Sign Up With
                         Facebook</a>
@@ -30,6 +30,22 @@
 </template>
 <script>
     export default {
-        name : 'NuxtAuthModal'
+        name : 'NuxtAuthModal',
+        methods: {
+            async loginWithGoogle() {
+                try {
+                    await this.$auth.loginWith('google', { params: {} })
+                    .then((res) => {
+                        if(res.auth){
+
+                        }else{
+
+                        }
+                    })
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+        },
     }
 </script>

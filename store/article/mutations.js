@@ -5,16 +5,19 @@ export default {
         //state.article = payload
         //console.log(state.article)
     },
-    GET_DETAILS({state} , payload){
-        
-        //state.details = payload
-        console.log(state.details)
-        
+    DETAILS({state} , payload){
+        state.article = payload
     },
-    LIKE_ARTICLE({state} , payload){
-        
-        state.details = payload
-        console.log(state.details)
-        
+    LIKE_ARTICLE(state , article){
+        article.is_like = !article.is_like
+        //  console.log(article)
+        //  console.log(article.is_like)
+        // console.log('a')
+    },
+    LIST_ARTICLE({state} , payload) {
+        state.articles =  payload
+    },
+    RELATED_ARTICLE({state} , payload){
+        state.relateds = payload
     }
 }

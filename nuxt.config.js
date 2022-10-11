@@ -64,18 +64,16 @@ export default {
     //middleware: ['auth']
   },
   auth: {
-    // redirect: {
-    //   callback: 'http://localhost:3001/api/auth/',
-    //   logout: '/signed-out'
-    // },
+    localStorage: false,
     strategies: {
       google : {
         clientId:'466171963780-if78nhnamd4if7uadurdiijp7v2spcoh.apps.googleusercontent.com',
         codeChallengeMethod: '',
         responseType: 'code',
         endpoints: {
-          token: 'http://localhost:3001/api/auth/google', 
-          userInfo: 'http://localhost:3001/api/user/profile',
+          token: 'http://127.0.0.1:3001/api/auth/google', 
+          userInfo: 'http://127.0.0.1:3001/api/user/profile',
+          tokenRequired : true
         },
         token: {
           property: 'accessToken',
@@ -84,7 +82,7 @@ export default {
         },
         userInfo : {
           property : false,
-          autoFetch : false
+          autoFetch : true
         },
         scope: ['openid', 'profile', 'email'],
         grantType: 'authorization_code',
