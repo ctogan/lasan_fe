@@ -51,160 +51,10 @@
                     <li v-for="(related , index) in relateds" :key="index">
                         <MediumArticle :article="related"/>
                     </li>
-                    <!-- <li>
-                        <div class="item-article">
-                            <div class="snippet">
-                                <div class="profile">
-                                    <div class="avatar-sm">
-                                        <img src="~/assets/images/avatar.png" alt="">
-                                    </div>
-                                    <div class="name">
-                                        <a href="profile">
-                                            Alice Kurt
-                                        </a>
-                                    </div>
-                                    <a class="more" href="more">
-                                        <div class="dot"></div>
-                                    </a>
-                                </div>
-                                <a href="detail">
-                                    <div class="title">
-                                        <h3>
-                                            Lorem ipsum dolor sit amet, consectetur sed do elit sed do
-                                            eiusmod
-                                            tempor incid.
-                                        </h3>
-                                        <p>
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum.
-                                            aute irure dolor.
-                                        </p>
-                                    </div>
-                                </a>
-                                <div class="bottom">
-                                    <div class="info">
-                                        <span class="topic-name">Music</span>
-                                        <span class="date">12 June 2022</span>
-                                        <span class="read-time">2 min read</span>
-                                    </div>
-                                    <div class="action">
-                                        <a class="share" href="">
-                                            <img src="~/assets/images/share.svg" alt="">
-                                        </a>
-                                        <a class="like" href="">
-                                            <img src="~/assets/images/like.svg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="image">
-                                <img src="~/assets/images/image1.jpg" alt="">
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-article">
-                            <div class="snippet">
-                                <div class="profile">
-                                    <div class="avatar-sm">
-                                        <img src="~/assets/images/avatar.png" alt="">
-                                    </div>
-                                    <div class="name">
-                                        <a href="profile">
-                                            Alice Kurt
-                                        </a>
-                                    </div>
-                                    <a class="more" href="more">
-                                        <div class="dot"></div>
-                                    </a>
-                                </div>
-                                <a href="detail">
-                                    <div class="title">
-                                        <h3>
-                                            Lorem ipsum dolor sit amet, consectetur sed do elit sed do
-                                            eiusmod
-                                            tempor incid.
-                                        </h3>
-                                        <p>
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum.
-                                            aute irure dolor.
-                                        </p>
-                                    </div>
-                                </a>
-                                <div class="bottom">
-                                    <div class="info">
-                                        <span class="topic-name">Music</span>
-                                        <span class="date">12 June 2022</span>
-                                        <span class="read-time">2 min read</span>
-                                    </div>
-                                    <div class="action">
-                                        <a class="share" href="">
-                                            <img src="~/assets/images/share.svg" alt="">
-                                        </a>
-                                        <a class="like" href="">
-                                            <img src="~/assets/images/like.svg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="image">
-                                <img src="~/assets/images/image1.jpg" alt="">
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-article">
-                            <div class="snippet">
-                                <div class="profile">
-                                    <div class="avatar-sm">
-                                        <img src="~/assets/images/avatar.png" alt="">
-                                    </div>
-                                    <div class="name">
-                                        <a href="profile">
-                                            Alice Kurt
-                                        </a>
-                                    </div>
-                                    <a class="more" href="more">
-                                        <div class="dot"></div>
-                                    </a>
-                                </div>
-                                <a href="detail">
-                                    <div class="title">
-                                        <h3>
-                                            Lorem ipsum dolor sit amet, consectetur sed do elit sed do
-                                            eiusmod
-                                            tempor incid.
-                                        </h3>
-                                        <p>
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum.
-                                            aute irure dolor.
-                                        </p>
-                                    </div>
-                                </a>
-                                <div class="bottom">
-                                    <div class="info">
-                                        <span class="topic-name">Music</span>
-                                        <span class="date">12 June 2022</span>
-                                        <span class="read-time">2 min read</span>
-                                    </div>
-                                    <div class="action">
-                                        <a class="share" href="">
-                                            <img src="~/assets/images/share.svg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="image">
-                                <img src="~/assets/images/image1.jpg" alt="">
-                            </div>
-                        </div>
-                    </li> -->
                 </ul>
             </div>
         </div>
-        <Comment/>
+        <CommentList :article="article"/>
         <ActionDetail/>
     </div>  
 </template>
@@ -212,7 +62,8 @@
   <script lang="ts">
     import { mapMutations , mapGetters , mapState } from 'vuex';
     import Like from '../../components/action/Like.vue';
-import MediumArticle from '../../components/article/MediumArticle.vue';
+    import MediumArticle from '../../components/article/MediumArticle.vue';
+    import CommentList from '../../components/CommentList.vue';
     export default {
     layout: "w-component/Main",
     data() {
@@ -234,9 +85,12 @@ import MediumArticle from '../../components/article/MediumArticle.vue';
     },
     created() {
         this.getRelatedArticle()
+        // console.log('a')
+        // console.log(this.$auth)
+        // console.log('c')
         //console.log(this.details)
     },
-    components: { Like, MediumArticle },
+    components: { Like, MediumArticle, CommentList },
 
     methods: {
         getRelatedArticle(){

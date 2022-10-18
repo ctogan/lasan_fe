@@ -2,7 +2,7 @@ import Articles from "../../assets/data/Articles.class"
 
 export default {
     getTrendings({commit}){
-        return this.$axios.$get(`/api/article/trendings`).then((response) => {
+        return this.$axios.$get(`/api/articles/trendings`).then((response) => {
             const trendings = []
             response.data.forEach((response) => {  
                 trendings.push(new Articles(response.id , response.slug , response.title , response.image , response.categories , response.date,response.article, response.subtitle ,response.read_calculation,response.is_like , response.is_wish , response.total_views , response.total_likes , response.total_comment , response.author))
@@ -34,7 +34,7 @@ export default {
     },
     likeArticle({commit , state} , article){
         return this.$axios.$post(`/api/article/add/like`, { slug: article.slug , action : article.is_like ? 'true' : 'false'}).then((response) => {
-            console.log(article)
+            //console.log(article)
             commit('LIKE_ARTICLE' , article);
         })
     },
@@ -51,4 +51,15 @@ export default {
             return list
         })
     },
+    getArticleComment({commit , params} , slug){
+        return this.$axios.$post(`/api/article/get/comment`, { slug: slug}).then((response) => {
+            console.log(response)
+            // const list = []
+            // response.data.forEach((response) => {  
+            //     list.push(new Articles(response.id , response.slug , response.title , response.image , response.categories , response.date,response.article , response.subtitle ,response.read_calculation,response.is_like , response.is_wish , response.total_views , response.total_likes , response.total_comment , response.author))
+            // })
+            // commit('RELATED_ARTICLE' , list);
+            // return list
+        })
+    }
 }

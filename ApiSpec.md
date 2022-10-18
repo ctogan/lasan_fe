@@ -632,7 +632,31 @@ Request :
         "code" : "integer",
         "status" : "string",
         "message" : "string",
-        "data" : []
+        "data" : {
+                "user": {
+                    "name" : "stirng",
+                    "profile_picture" : "string"
+                },
+                "comment_id" : "integer",
+                "created_at" : "string",
+                "comment": "string",
+                "is_like" : "boolean",
+                "total_comment_like" : "string",
+                "total_comment_reply" : "string",
+                "comment_replies" : [
+                    {
+                        "user": {
+                            "name" : "stirng",
+                            "profile_picture" : "string"
+                        },
+                        "comment_reply_id" : "integer",
+                        "is_like" : "boolean",
+                        "total_comment_like" : "string",
+                        "comment" : "string",
+                        "created_at" : "string"
+                    }
+                ]
+            },
     }
 ```
 - Response Error

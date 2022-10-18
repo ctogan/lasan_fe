@@ -1,19 +1,20 @@
 <template>
     <div class="comment-section">
-        <a id="close_comment" href="javascript:void(0)" class="d-flex align-center justify-end mb-5"><span
-                class="close"></span></a>
-        <div class="action-comment">
+        <a id="close_comment" href="javascript:void(0)" class="d-flex align-center justify-end mb-5">
+            <span class="close"></span>
+        </a>
+        <div class="action-comment"  v-if="$auth.loggedIn">
             <div class="profile">
                 <div class="avatar-md">
-                    <img src="~/assets/images/avatar.png" alt="">
+                    <img :src="$auth.user.data.avatar" alt="">
                 </div>
                 <div class="user">
                     <div class="name">
-                        Agust
+                        {{$auth.user.data.first_name }}
                     </div>
                 </div>
             </div>
-            <a href="" class="btn btn-primary small-rounded">Tambah Komentar</a>
+            <a class="btn btn-primary small-rounded comment-article">Tambah Komentar</a>
         </div>
         <ul class="comment-type">
             <li class="active"><a href="">Terbaru</a></li>
@@ -101,11 +102,30 @@
                 </div>
             </li>
         </ul>
+        <ActionComment :comments="comments" :subcomment="subcomment" :article="article" />
     </div>
 
 </template>
 <script>
     export default {
-        name: 'NuxtComment'
+        name: 'NuxtCommentList',
+        props : ['article'],
+        data () {
+            return {
+                comments : [],
+                subcomment : 0
+            }
+        },
+        created() {
+            this.getArticleComment()
+        },
+        methods: {
+            getArticleComment(){
+                this.$store.dispatch('comment/getArticleComment' , this.article.slug ).then((response) => {
+                    this.comments = response
+                })
+            }
+        },
+        
     }
 </script>

@@ -34,6 +34,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     { src: '~/assets/css/style.css', lang: 'css' },
+    { src: '~/assets/css/custom.css', lang: 'css' },
     { src: '~/assets/css/app.css', lang: 'css' },
   ],
 

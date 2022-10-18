@@ -17,7 +17,7 @@
                     <span class="info">
                         <ul>
                             <li>{{item.categories.topic_name}}</li>
-                            <li>{{item.date}}</li>
+                            <li>{{$moment(item?.date).format('D MMMM YYYY')}}</li>
                         </ul>
                     </span>
                 </nuxt-link>
@@ -62,12 +62,12 @@
                 return this.$store.state.trendings
             }
         },
-        // created() {
-        //     this.$store.dispatch('article/getTrendings')
-        //     .then((response) => {
-        //         this.list = response
-        //     })
-        // },
+        created() {
+            this.$store.dispatch('article/getTrendings')
+            .then((response) => {
+                this.list = response
+            })
+        },
         methods: {
             
         },

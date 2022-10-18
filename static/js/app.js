@@ -105,6 +105,14 @@ $(document).on('click', '#close_side_profile_menu', function () {
 $(document).on('click', '.comment', function () {
     $('.comment-section').addClass('show');
 });
+
+$(document).on('click', '.comment-article', function () {
+    $('.comment-section-article').addClass('show');
+});
+$(document).on('click', '#close_comment-article', function () {
+    $('.comment-section-article').removeClass('show');
+});
+
 $(document).on('click', '.search-box .input', function () {
     $('body').addClass('overflow-hidden');
     $('.overlay').addClass('search');
