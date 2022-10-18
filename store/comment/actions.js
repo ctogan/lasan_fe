@@ -12,11 +12,11 @@ export default {
     //         return list
     //     })
     // },
-    storeComment({commit , state} , data){
+    storeComment({commit} , data){
        
         //console.log(state.comments)
         return this.$axios.$post(`/api/article/comment/store` , { slug : data.article.slug , comment : data.comment}).then((response) => {
-            commit('ADD_TO_COMMENT_LIST' , new Comment(response.comment_id ,response.created_at , response.comment , response.is_like , response.total_comment_like , response.total_comment_reply , response.comment_replies , response.user));
+            commit('STORE_COMMENT_LIST' , new Comment(response.comment_id ,response.created_at , response.comment , response.is_like , response.total_comment_like , response.total_comment_reply , response.comment_replies , response.user));
         })
         
     },
