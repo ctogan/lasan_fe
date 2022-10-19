@@ -39,14 +39,14 @@
                     </div>
                     <ul class="nav-item">
                         <li>
-                            <a id="nav_item_profile" href="javascript:void(0)" class="more">
+                            <a id="nav_item_profile" href="javascript:void(0)" class="more"  v-if="$auth.loggedIn">
                                 <div class="profile">
                                     <div class="avatar-md">
-                                        <img src="~/assets/images/avatar.png" alt="">
+                                        <img :src="$auth.user.data.avatar" :alt="$auth.user.data.name">
                                     </div>
                                     <div class="user">
-                                        <p class="name">John Doe. M</p>
-                                        <p class="info">john@gmail.com</p>
+                                        <p class="name">{{$auth.user.data.first_name}}</p>
+                                        <p class="info">{{$auth.user.data.email}}</p>
                                     </div>
                                 </div>
                                 <span></span>

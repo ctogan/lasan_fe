@@ -6,7 +6,10 @@ export default (ctx) => {
     if (errorCode === 401) {
       console.log(errorCode + ' - ' + errorMsg)
       ctx.redirect('/')
+    }else if(errorCode === 500){
+      $route.push('404')
     } else {
+      console.log(errorCode)
       throw new Error(error.message)
     }
   })

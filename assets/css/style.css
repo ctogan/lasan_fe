@@ -106,7 +106,7 @@ header nav .nav-item li a.more span:before {
   background: #9FA0A3;
 }
 header nav .nav-item li a.more span {
-  margin-left: 70px;
+  /*margin-left: 70px;*/
 }
 header nav .nav-item li a.search {
   display: flex;

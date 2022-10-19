@@ -3,33 +3,33 @@
     <h2>Yang lagi Trending</h2>
     <div class="trending">
         <ul class="list-trending">
-            <li v-for="item in datas" :key="index">
+            <li v-for="(article , index) in articles" :key="index">
                 <div class="item">
                     <div class="row">
                         <div class="description">
                             <a href="/@agust.tampubolon">
                                 <div class="profile">
                                     <div class="avatar-xs">
-                                        <img src="/images/avatar.png" alt="">
+                                        <img :src="article.author.avatar" :alt="article.author.name">
                                     </div>
                                     <div class="name">
-                                        Alice Kurt
+                                      {{article.author.name}}
                                     </div>
                                 </div>
                             </a>
-                            <NuxtLink to="detail">
+                            <NuxtLink :to="'detail/'+article.slug">
                                 <div class="title">
                                     <h3>
-                                        Lorem ipsum dolor sit amet, consectetur sed do elit sed
+                                       {{article.title}}
                                     </h3>
                                     <div class="info">
-                                        Music | 12 June 2022
+                                        {{article.categories.topic_name}} | {{$moment(article?.date).format('D MMMM YYYY')}}
                                     </div>
                                 </div>
                             </NuxtLink>
                         </div>
                         <div class="image">
-                            <img src="/images/image1.jpg" alt="">
+                            <img :src="article.image" :alt="article.title">
                         </div>
                     </div>
                 </div>
@@ -44,17 +44,20 @@
         name : 'NuxtTopTrending',
         data() {
             return {
-                list : {},
-                datas :[]
+                articles :[]
             }
         },
-        async asyncData (ctx) {
-            // this.datas =  await ctx.app.$services.articles.findAll()
-            // console.log(datas)
-        },
         mounted() {
-            // const data =  ctx.app.$services.articles.findAll()
-            // console.log(data)
+            this.getRelatedArticle()
+        },
+        methods: {
+            getRelatedArticle(){
+                this.$store.dispatch('article/getTrendings').then((response) => {
+                    console.log(response)
+                    this.articles = response
+                })
+                
+            }
         },
     }
 </script>

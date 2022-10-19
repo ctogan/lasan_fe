@@ -14,95 +14,62 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-primary small-rounded comment-article">Tambah Komentar</a>
+            <a class="btn btn-primary small-rounded" @click="action_comment()">Tambah Komentar</a>
         </div>
         <ul class="comment-type">
             <li class="active"><a href="">Terbaru</a></li>
             <li><a href="">Paling Relevan</a></li>
             <li><a href="">Komentarmu</a></li>
         </ul>
-        <ul class="list-comment">
-            <li class="root">
+        <ul class="list-comment" v-if="comments">
+            <li class="root" v-for="(comment , index) in comments" :key="index">
                 <div class="item">
                     <div class="profile">
                         <div class="avatar-sm">
-                            <img src="~/assets/images/avatar.png" alt="">
+                            <img :src="comment.user.image" :alt="comment.user.name">
                         </div>
                         <div class="user">
-                            <div class="name">Surya</div>
-                            <div class="info">2 jam lalu</div>
+                            <div class="name">{{comment.user.name}}</div>
+                            <div class="info">{{comment.created_at | humanizetime}} </div>
                         </div>
                     </div>
                     <a href="" class="more"><img src="~/assets/images/more.svg" alt=""></a>
                 </div>
-                <div class="comment">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, quisquam? Deserunt esse
-                    sapiente
-                    corrupti alias laborum, adipisci nisi quibusdam commodi?
-                </div>
+                <div class="comment" v-html="comment.comment"></div>
                 <div class="action">
                     <div class="d-flex">
-                        <a href="" class="mr-4"><img class="mr-1" src="~/assets/images/thumb.svg" alt=""> 50</a>
-                        <a href=""><img class="mr-1" src="~/assets/images/message.svg" alt=""> 50 Balasan</a>
+                        <a href="" class="mr-4"><img class="mr-1" src="~/assets/images/thumb.svg" alt=""> {{comment.total_comment_like}}</a>
+                        <a href=""><img class="mr-1" src="~/assets/images/message.svg" alt=""> {{comment.total_comment_like}} Balasan</a>
                     </div>
-                    <a class="reply" href="">Balas</a>
+                    <a class="reply"  @click="action_comment(comment , index)">Balas</a>
                 </div>
-                <ul class="comment-reply">
-                    <li>
+                <ul class="comment-reply" v-if="comment.comment_replies">
+                    <li v-for="subcomment in comment.comment_replies" :key="subcomment.comment_reply_id">
                         <div class="item">
                             <div class="profile">
                                 <div class="avatar-sm">
-                                    <img src="~/assets/images/avatar.png" alt="">
+                                    <img :src="subcomment.user.image" :alt="subcomment.user.name">
                                 </div>
                                 <div class="user">
-                                    <div class="name">Abdi</div>
-                                    <div class="info">2 jam lalu</div>
+                                    <div class="name">{{subcomment.user.name}}</div>
+                                    <div class="info">{{subcomment.created_at | humanizetime}}</div>
                                 </div>
                             </div>
                             <a href="" class="more"><img src="~/assets/images/more.svg" alt=""></a>
                         </div>
-                        <div class="comment">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, quisquam? Deserunt esse
-                            sapiente
-                            corrupti alias laborum, adipisci nisi quibusdam commodi?
+                        <div class="comment" v-html="subcomment.comment">
                         </div>
                         <div class="action">
                             <div class="d-flex">
-                                <a href="" class="mr-4"><img class="mr-1" src="~/assets/images/thumb.svg" alt=""> 50</a>
+                                <a href="" class="mr-4"><img class="mr-1" src="~/assets/images/thumb.svg" alt=""> {{subcomment.total_comment_like}}</a>
                             </div>
-                            <a class="reply" href="">Balas</a>
+                            <a class="reply" @click="action_comment(comment , index)" >Balas</a>
                         </div>
                     </li>
                 </ul>
             </li>
-            <li class="root">
-                <div class="item">
-                    <div class="profile">
-                        <div class="avatar-sm">
-                            <img src="~/assets/images/avatar.png" alt="">
-                        </div>
-                        <div class="user">
-                            <div class="name">Surya</div>
-                            <div class="info">2 jam lalu</div>
-                        </div>
-                    </div>
-                    <a href="" class="more"><img src="~/assets/images/more.svg" alt=""></a>
-                </div>
-                <div class="comment">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, quisquam? Deserunt esse
-                    sapiente
-                    corrupti alias laborum, adipisci nisi quibusdam commodi?
-                </div>
-                <div class="action">
-                    <div class="d-flex">
-                        <a href="" class="mr-4"><img class="mr-1" src="~/assets/images/thumb.svg" alt=""> 50</a>
-                        <a href=""><img class="mr-1" src="~/assets/images/message.svg" alt=""> 50 Balasan</a>
-                    </div>
-                    <a class="reply" href="">Balas</a>
-                </div>
-            </li>
         </ul>
-        <ActionComment :comments="comments" :subcomment="subcomment" :article="article" />
+        <ActionComment :comments="comments" :comment="comment" :article="article" :index="index"/>
     </div>
 
 </template>
@@ -113,6 +80,8 @@
         data () {
             return {
                 comments : [],
+                index : 0,
+                comment : {},
                 subcomment : 0
             }
         },
@@ -124,6 +93,10 @@
                 this.$store.dispatch('comment/getArticleComment' , this.article.slug ).then((response) => {
                     this.comments = response
                 })
+            },
+            action_comment(comment = {}){
+                this.comment = comment
+                $('.comment-section-article').addClass('show');
             }
         },
         

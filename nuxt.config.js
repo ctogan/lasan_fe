@@ -44,6 +44,7 @@ export default {
     '~/plugins/interceptor.js',
     // '~/plugins/axios.js',
      '~/plugins/Api.js',
+     '~/plugins/utils.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

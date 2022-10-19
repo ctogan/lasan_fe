@@ -49,8 +49,9 @@
             </div>
         </div>
         <div class="d-flex justify-end button-action-comment">
-            <a class="btn btn-plain color-grey close_comment-article">Cancel</a>
-            <a class="btn btn-secondary" @click="action">Post</a>
+            <a class="btn btn-plain color-grey close_comment-article" @click="close">Cancel</a>
+            <a class="btn btn-secondary" v-if="comment.comment_id != undefined"  @click="actionSubComment">Reply</a>
+            <a class="btn btn-secondary" v-else @click="action">Post</a>
         </div>
     </div>
 </template>
@@ -58,21 +59,29 @@
 <script lang="ts">
 export default {
     name : "NuxActionComment",
-    props : ['comments' , 'article' , 'subcomment'],
+    props : ['comments' , 'article' , 'comment' , 'index'],
     data(){
         return {
         }
     },
     methods: {
         action() {
-            // console.log(this.comments)
-            // console.log(this.article)
-            // console.log(this.subcomment)
-            let html = document.getElementById("content_editor").innerHTML
-            this.$store.dispatch('comment/storeComment' , { article : this.article , comment : html , comments : this.comments , subcomment : this.subcomment }).then((response) => {
-                console.log(response)
+            let text = document.getElementById("content_editor").innerHTML
+            this.$store.dispatch('comment/storeComment' , { article : this.article , text : text , comments : this.comments , comment : this.comment }).then((response) => {
+                document.getElementById("content_editor").innerHTML = ''
+                $('.comment-section-article').removeClass('show');
             })
         },
+        actionSubComment() {
+            let text = document.getElementById("content_editor").innerHTML
+            this.$store.dispatch('comment/storeSubComment' , { article : this.article , text : text , comments : this.comments , comment : this.comment , index : this.index}).then((response) => {
+                document.getElementById("content_editor").innerHTML = ''
+                $('.comment-section-article').removeClass('show');
+            })
+        },
+        close(){
+            $('.comment-section-article').removeClass('show');
+        }
     },
 }
 </script>
