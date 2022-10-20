@@ -74,13 +74,13 @@ Request :
             {
                 "name" : "string",
                 "occupation" : "string",
-                "uuid" : "stirng",
+                "uuid" : "string",
                 "is_followed" : "boolean" 
             },
             {
                 "name" : "string",
                 "occupation" : "string",
-                "uuid" : "stirng",
+                "uuid" : "string",
                 "is_followed" : "boolean" 
             }
         ]
@@ -173,7 +173,7 @@ Request :
                     "short_description" : "string"
                 },
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -227,7 +227,7 @@ Request :
                 "is_like" : "boolean",
                 "is_wish" : "boolean",
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -242,7 +242,7 @@ Request :
                 "is_like" : "boolean",
                 "is_wish" : "boolean",
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -298,7 +298,7 @@ Request :
                 "is_like" : "boolean",
                 "is_wish" : "boolean",
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -313,7 +313,7 @@ Request :
                 "is_like" : "boolean",
                 "is_wish" : "boolean",
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -364,11 +364,11 @@ Request :
                     "read_calculation" : "string",
                     "is_like" : "boolean",
                     "is_wish" : "boolean",
-                    "total_views" : "stirng",
+                    "total_views" : "string",
                     "total_like" : "string",
                     "total_comment" : "string",
                     "author" : {
-                        "name" : "stirng",
+                        "name" : "string",
                         "profile_picture" : "string",
                         "occupation" : "string"
                     }
@@ -420,7 +420,7 @@ Request :
                 "is_like" : "boolean",
                 "is_wish" : "boolean",
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -435,7 +435,7 @@ Request :
                 "is_like" : "boolean",
                 "is_wish" : "boolean",
                 "author" : {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string",
                     "occupation" : "string"
                 }
@@ -483,7 +483,7 @@ Request :
         "data" : [
             {
                 "user": {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string"
                 },
                 "comment_id" : "integer",
@@ -495,7 +495,7 @@ Request :
                 "comment_replies" : [
                     {
                         "user": {
-                            "name" : "stirng",
+                            "name" : "string",
                             "profile_picture" : "string"
                         },
                         "comment_reply_id" : "integer",
@@ -520,7 +520,7 @@ Request :
                 "comment_replies" : [
                     {
                         "user": {
-                            "name" : "stirng",
+                            "name" : "string",
                             "profile_picture" : "string"
                         },
                         "created_at" : "string",
@@ -573,7 +573,7 @@ Request :
         "data" : [
             {
                 "user": {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string"
                 },
                 "created_at" : "string",
@@ -585,7 +585,7 @@ Request :
             },
             {
                 "user": {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string"
                 },
                 "created_at" : "string",
@@ -634,7 +634,7 @@ Request :
         "message" : "string",
         "data" : {
                 "user": {
-                    "name" : "stirng",
+                    "name" : "string",
                     "profile_picture" : "string"
                 },
                 "comment_id" : "integer",
@@ -646,7 +646,7 @@ Request :
                 "comment_replies" : [
                     {
                         "user": {
-                            "name" : "stirng",
+                            "name" : "string",
                             "profile_picture" : "string"
                         },
                         "comment_reply_id" : "integer",
@@ -985,6 +985,94 @@ Request :
         "status" : "string",
         "message" : "string",
         "data" : []
+    }
+```
+- Response Error
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : []
+    }
+```
+
+
+
+
+## TOP STORIES
+Request :
+- Method : GET
+- Endpoint : /api/stories
+- Header
+    - Content-Type : application/json
+    - accept : application/json
+- Note
+    - [x] Limit list 30
+    - [x] Order by total views
+- Body Request
+```json
+{
+    "token" : "string",
+}
+```
+- Response Success
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : [
+            {
+                "author" : {
+                    "name" : "string",
+                    "profile_picture" : "string",
+                    "occupation" : "string",
+                    "stories" : [
+                        {
+                            "slug": "string",
+                            "title": "string",
+                            "categories" : {
+                                "name" : "string"
+                            },
+                            "date" : "string",
+                            "image" : "string",
+                            "short_description" : "string"
+                        },
+                        {
+                            "slug": "string",
+                            "title": "string",
+                            "categories" : {
+                                "name" : "string"
+                            },
+                            "date" : "string",
+                            "image" : "string",
+                            "short_description" : "string"
+                        },
+                    ]
+                }
+            },
+            {
+                "author" : {
+                    "name" : "string",
+                    "profile_picture" : "string",
+                    "occupation" : "string",
+                    "stories" : [
+                        {
+                            "slug": "string",
+                            "title": "string",
+                            "categories" : {
+                                "name" : "string"
+                            },
+                            "date" : "string",
+                            "image" : "string",
+                            "short_description" : "string"
+                        }
+                    ]
+                }
+            }
+        ]
+        
     }
 ```
 - Response Error
