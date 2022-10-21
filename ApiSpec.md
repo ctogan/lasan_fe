@@ -1221,6 +1221,48 @@ Request :
 
 
 
+## LIST SEARCH SUGGESTION
+Request :
+- Method : GET
+- Endpoint : /api/articles/search
+- Header
+    - Content-Type : application/json
+    - accept : application/json
+- Note 
+- Body Request
+```json
+{
+    "token" : "string",
+}
+```
+- Response Success
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : [
+            {
+                "slug": "string",
+                "title": "string",
+            }
+        ]
+        
+    }
+```
+- Response Error
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : []
+    }
+```
+
+
+
+
 ## List SAVE ARTICLE BY USER
 Request :
 - Method : GET

@@ -11,7 +11,9 @@
             </ul>
         </div>
         <div class="body-content">
+            <img src="/images/notif.png" alt=""/>
             <div class="side-menu-item list-contributor-to-follow">
+                
                 <ul>
                     <li>
                         <a href="/@agust.tampubolon"></a>
@@ -29,7 +31,6 @@
                             </div>
                         </div>
                      </li>
-                     
                      <li>
                         <a href="/@agust.tampubolon"></a>
                         <div class="row p-1">
