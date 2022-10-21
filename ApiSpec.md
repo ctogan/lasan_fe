@@ -1085,3 +1085,210 @@ Request :
     }
 ```
 
+## CREATE STORY
+Request :
+- Method : POST
+- Endpoint : /api/story/store
+- Header
+    - Content-Type : application/json
+    - accept : application/json
+- Note
+- Body Request
+```json
+{
+    "token" : "string",
+    "slug" : "string",
+}
+```
+- Response Success
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : [
+        ]
+        
+    }
+```
+- Response Error
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : []
+    }
+```
+
+
+## DELETE STORY
+Request :
+- Method : POST
+- Endpoint : /api/story/delete
+- Header
+    - Content-Type : application/json
+    - accept : application/json
+- Note
+- Body Request
+```json
+{
+    "token" : "string",
+    "slug" : "string",
+}
+```
+- Response Success
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : [
+        ]
+        
+    }
+```
+- Response Error
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : []
+    }
+```
+
+
+## NOTIFICATION
+Request :
+- Method : GET
+- Endpoint : /api/notification/list
+- Header
+    - Content-Type : application/json
+    - accept : application/json
+- Note
+    - [x] Limit list 20
+    - [x] paging ambil dari query parameter dengan keyword "page" default "1"
+    - [x] filtering ambil dari query parameter dengan keyword "filter" [all , your_activity , your_account] default "all"
+    - [x] status true jika sudah dibaca , false jika belum dibaca
+    
+- Body Request
+```json
+{
+    "token" : "string",
+}
+```
+- Response Success
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : [
+            {
+                "user" : {
+                    "name" : "string",
+                    "profile_picture" : "string",
+                },
+                "created_at" : "timestamp",
+                "notification" : "string",
+                "status" : "boolean",
+                "redirect_link" : "string"
+            },
+            {
+                "user" : {
+                    "name" : "string",
+                    "profile_picture" : "string",
+                },
+                "created_at" : "timestamp",
+                "notification" : "string",
+                "status" : "boolean",
+                "redirect_link" : "string"
+            }
+        ]
+        
+    }
+```
+- Response Error
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : []
+    }
+```
+
+
+
+## List SAVE ARTICLE BY USER
+Request :
+- Method : GET
+- Endpoint : /api/articles/saved
+- Header
+    - Content-Type : application/json
+    - accept : application/json
+- Note
+    - [x] Limit list 20 per paging diambil dari query string "page"
+    - [x] Order by recomendation / base on personality users diambil dari query string "filter"
+    - [x] Filter by [ all ,choosed_topic , draft ]
+- Body Request
+```json
+{
+    "token" : "string",
+    "filter_by" : "string",
+    "page" : "integer"
+}
+```
+- Response Success
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : [
+            {
+                "slug": "string",
+                "title": "string",
+                "categories" : "string",
+                "date" : "string",
+                "image" : "string",
+                "read_calculation" : "string",
+                "is_like" : "boolean",
+                "is_wish" : "boolean",
+                "author" : {
+                    "name" : "string",
+                    "profile_picture" : "string",
+                    "occupation" : "string"
+                }
+            },
+            {
+                "slug": "string",
+                "title": "string",
+                "categories" : "string",
+                "date" : "string",
+                "image" : "string",
+                "read_calculation" : "string",
+                "is_like" : "boolean",
+                "is_wish" : "boolean",
+                "author" : {
+                    "name" : "string",
+                    "profile_picture" : "string",
+                    "occupation" : "string"
+                }
+            },
+        ]
+        
+    }
+```
+- Response Error
+```json
+    {
+        "code" : "integer",
+        "status" : "string",
+        "message" : "string",
+        "data" : []
+    }
+```
+
+
