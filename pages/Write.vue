@@ -81,6 +81,7 @@
                 </div>
             </div>
         </div>
+        <ModalGallery/>
     </div>
 </template>
 
