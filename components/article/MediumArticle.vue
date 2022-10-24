@@ -47,7 +47,7 @@
 <script lang="ts">
 import Like from '../action/Like.vue';
 export default {
-    name: "NuxtArticleMediumArticle",
+    name: "NuxtMediumArticle",
     props: ["article"],
     methods: {
         action() {

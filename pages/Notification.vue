@@ -11,7 +11,18 @@
             </ul>
         </div>
         <div class="body-content">
-            <img src="/images/notif.png" alt=""/>
+            <div class="content-justify-center">
+                <div class="p-5">
+                    <span class="secondary-">Oopss</span>
+                    <br/>
+                    <br/>
+                    <p class="font-secondary">Kamu belum memiliki aktifitas, ayo santai dulu sambil baca dan buat tulisan di Lagi Santai</p>
+                </div>
+                <div class="p-5">
+                    <img src="~/assets/images/notif.png" alt="" class="w-30"/>
+                </div>
+            </div>
+            
             <div class="side-menu-item list-contributor-to-follow">
                 
                 <ul>

@@ -13,5 +13,8 @@ export default {
     },
     RELATED_ARTICLE({state} , payload){
         state.relateds = payload
+    },
+    LIST_SAVE_ARTICLE({state} , payload){
+        state.saved_articles = payload
     }
 }

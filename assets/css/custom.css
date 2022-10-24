@@ -78,3 +78,23 @@
     color: #9FA0A3;
 }
 
+
+.content-justify-center{
+    text-align: center;
+    width: 100%;
+}
+
+.w-30{
+    width: 33.333%;
+}
+.w-60{
+    width: 66.333%;
+}
+.w-100{
+    width: 100%;
+}
+
+.body-content p{
+    line-height: 20px;
+}
+
