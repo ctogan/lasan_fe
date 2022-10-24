@@ -69,9 +69,12 @@ export default {
         return this.$axios.$get(`/api/articles/saved`,{ params: { page: p } }).then((response) => {
             //console.log(response)
             const list = []
-            response.data.rows.forEach((response) => {  
-                list.push(new Articles(response.id , response.slug , response.title , response.image , response.categories , response.date,response.article , response.subtitle ,response.read_calculation,response.is_like , response.is_wish , response.total_views , response.total_likes , response.total_comment , response.author))
-            })
+            if(response.data){
+                response.data.rows.forEach((response) => {  
+                    list.push(new Articles(response.id , response.slug , response.title , response.image , response.categories , response.date,response.article , response.subtitle ,response.read_calculation,response.is_like , response.is_wish , response.total_views , response.total_likes , response.total_comment , response.author))
+                })
+            }
+            
             commit('LIST_SAVE_ARTICLE' , list)
             return list
         })

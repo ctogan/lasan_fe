@@ -1585,7 +1585,7 @@ h2.title {
   height: 17px;
 }
 .list-article ul li .item-article .image {
-  width: 230px;
+  /*width: 230px;*/
   height: 150px;
   background: #767676;
   border-radius: 11px;

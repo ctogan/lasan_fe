@@ -8,13 +8,26 @@
                 </li>
             </ul>
         </div>
-        <div class="recommendation">
-            <div class="list-article" v-if="saved_articles">
-                <ul>
-                    <li v-for="(article , index) in saved_articles" :key="index">
-                        <ArticleMediumArticle :article="article"/>
-                    </li>
-                </ul>
+        <div class="body-content">
+            <div class="recommendation">
+                <div class="list-article" v-if="Object.keys(saved_articles).lenght > 0">
+                    <ul>
+                        <li v-for="(article , index) in saved_articles" :key="index">
+                            <ArticleMediumArticle :article="article"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-justify-center" v-else>
+                    <div class="p-5">
+                        <span class="secondary-">Oopss</span>
+                        <br/>
+                        <br/>
+                        <p class="font-secondary">Kamu belum memiliki aktifitas, ayo santai dulu sambil baca dan buat tulisan di Lagi Santai</p>
+                    </div>
+                    <div class="p-5">
+                        <img src="~/assets/images/saved_empty.png" alt="" class="w-30"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>  
