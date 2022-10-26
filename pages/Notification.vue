@@ -2,11 +2,23 @@
     <div class="flex-1 mr-6">
         <div class="sub-menu mb-4">
             <ul>
-                <li>
-                    <a class="sub-menu-item active" href="javascript:void(0)">Semua</a>
-                    <a class="sub-menu-item" href="javascript:void(0)">Aktivitas Kamu</a>
-                    <a class="sub-menu-item" href="javascript:void(0)">Akun Kamu</a>
-                    <a class="sub-menu-item" href="javascript:void(0)"><img src="~/assets/images/filter.svg" alt=""></a>
+                <li class="custom-sub-menu-list">
+                    <div class="item-sub-menu-list">
+                        <a class="sub-menu-item active" href="javascript:void(0)">Semua</a>
+                        <a class="sub-menu-item" href="javascript:void(0)">Aktivitas Kamu</a>
+                        <a class="sub-menu-item" href="javascript:void(0)">Akun Kamu</a>
+                    </div>
+                    <div class="item-sub-menu-action">
+                        <a class="sub-menu-item" href="javascript:void(0)"><img src="~/assets/images/filter.svg" alt=""></a>
+                        <div class="action-sub-menu">
+                            <ul class="action-sub-menu-list">
+                                <li> Terbaru</li>
+                                <li>Belum dibaca</li>
+                                <li>Sudah dibaca</li>
+                                <li>Hapus</li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -16,7 +28,7 @@
                     <span class="secondary-">Oopss</span>
                     <br/>
                     <br/>
-                    <p class="font-secondary">Kamu belum memiliki aktifitas, ayo santai dulu sambil baca dan buat tulisan di Lagi Santai</p>
+                    <p class="font-secondary">Saat ini belum ada notifikasi yang masuk.</p>
                 </div>
                 <div class="p-5">
                     <img src="~/assets/images/notif.png" alt="" class="w-30"/>

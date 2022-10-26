@@ -99,3 +99,36 @@
     line-height: 20px;
 }
 
+.profile .user {
+    max-width: 70%;
+}
+
+.item-article .snippet{
+    width: 100% !important;
+}
+.custom-sub-menu-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.action-sub-menu{
+    animation-name: animation-pop-menu;
+    animation-duration: 0.5s;
+    position: absolute;
+    padding: 15px 9px;
+    margin-left: 27px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+
+}
+
+.action-sub-menu-list{
+    display: grid !important;
+    background-color: #FFFFFF;
+    position: absolute;
+    height: auto !important;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+    padding: 14px;
+    transform: translate(-50%);
+}
