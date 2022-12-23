@@ -1,8 +1,7 @@
 <template>
     <span>
-        <a class="like">
-            <img v-if="details.is_like == true" src="~/assets/images/like.svg" alt=""  @click="action" />
-            <img v-else src="~/assets/images/heart-off.svg" alt="" @click="action"/>
+        <a :class="details.is_like ? 'like active' : 'like'" href="javascript:void(0)" @click="action">
+          <div class="icon"></div>
         </a>
     </span>
 </template>
@@ -13,6 +12,16 @@ export default {
     props : ['details'],
     methods: {
         action() {
+            this.details.is_like = true;
+            this.$toast.show('Great! You have saved the article.',
+              {
+                theme: "toasted-primary",
+                iconPack : "material",
+                position: "bottom-right",
+                icon : "bookmark",
+                duration : 5000
+              }
+            )
             this.$store.dispatch('article/likeArticle' , this.details)
         },
     },

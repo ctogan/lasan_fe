@@ -14,7 +14,6 @@
         <div class="list-article">
             <ul>
                 <li v-for="(article , index) in articles" :key="index">
-                    <!-- <MediumArticle :article="article"></MediumArticle> -->
                     <div class="item-article">
                         <div class="snippet">
                             <div class="profile">
@@ -22,15 +21,13 @@
                                     <img :src="article.author.avatar" alt="">
                                 </div>
                                 <div class="name">
-                                    <a href="/@agust.tampubolon">
-                                        {{article.author.name}}
-                                    </a>
+                                  <NuxtLink :to="'/profile/'+article.author.username">
+                                    {{article.author.name}}
+                                  </NuxtLink>
                                 </div>
-                                <a class="more" href="more">
-                                    <div class="dot"></div>
-                                </a>
+                                <ActionMore :details="article"></ActionMore>
                             </div>
-                            <NuxtLink :to="'/artcile/'+article.slug">
+                            <NuxtLink :to="'/'+article.slug">
                                 <div class="title">
                                     <h3>
                                         {{article.title}}
@@ -44,14 +41,11 @@
                                 <div class="info">
                                     <span class="topic-name">{{article.categories.topic_name}}</span>
                                     <span class="date">{{$moment(article.date).format('D MMMM YYYY')}}</span>
-                                    <span class="read-time">{{article.read_calculation}} minute</span>
+                                    <span class="read-time">{{article.read_calculation}} minute read</span>
                                 </div>
                                 <div class="action">
-                                    
-                                    <a class="share">
-                                        <img src="/images/share.svg" alt="">
-                                    </a>
-                                    <Like :details="article" ></Like>
+                                    <NuxActionShare :details="article"></NuxActionShare>
+                                    <Like :details="article"></Like>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +61,8 @@
 <script>
 import {mapMutations} from 'vuex'
 import Like from '../components/action/Like.vue'
+import NuxActionMore from "./action/More";
+import NuxActionShare from "./action/Share";
 export default {
     name : "NuxtListArticles",
     data(){
@@ -76,6 +72,8 @@ export default {
         }
     },
     components : {
+      NuxActionShare,
+      NuxActionMore,
         Like
     },
     created() {

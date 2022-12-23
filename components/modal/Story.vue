@@ -38,7 +38,7 @@
                 <div class="short">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo, provident!</div>
             </div>
             <img class="bg" src="/images/story-img.jpg" alt="">
-            <a href="" class="btn btn-secondary read-story">Baca</a>
+            <a href="" class="btn btn-secondary read-story">Baca Selengkapnya</a>
         </div>
     </div>
 </template>

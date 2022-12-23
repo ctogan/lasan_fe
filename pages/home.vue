@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        
+
         <section class="home-content">
             <div class="main">
                 <TopStories/>
@@ -9,9 +9,9 @@
             </div>
             <SectionSideComponentHome/>
         </section>
-    </div>    
+    </div>
   </template>
-  
+
   <script>
     // import moment from 'moment'
     export default {
@@ -29,4 +29,4 @@
         },
     }
   </script>
-   
+

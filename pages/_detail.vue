@@ -4,7 +4,7 @@
             <div class="d-flex mb-8 align-center">
                 <div class="profile">
                     <div class="avatar-md">
-                        <UsersAvatar :link="article.author.avatar" :alt="article.author.name" />
+                        <img :src="article.author.avatar" :alt="article.author.name" />
                     </div>
                     <div class="user">
                         <div class="name">{{article.author.name}}</div>
@@ -26,6 +26,7 @@
                 <div class="content">
                     {{article.article}}
                 </div>
+                <p></p>
             </article>
             <div class="action-detail">
                 <div>
@@ -56,14 +57,14 @@
         </div>
         <CommentList :article="article"/>
         <ActionDetail/>
-    </div>  
+    </div>
 </template>
-  
+
   <script lang="ts">
     import { mapMutations , mapGetters , mapState } from 'vuex';
-    import Like from '../../components/action/Like.vue';
-    import MediumArticle from '../../components/article/MediumArticle.vue';
-    import CommentList from '../../components/CommentList.vue';
+    import Like from '../components/action/Like.vue';
+    import MediumArticle from '../components/article/MediumArticle.vue';
+    import CommentList from '../components/CommentList.vue';
     export default {
     layout: "w-component/Main",
     data() {
@@ -76,6 +77,7 @@
         //  relateds(){
         //     this.$store.state.article.relateds
         // }
+
     },
     async asyncData({ store, params }) {
         const article = await store.dispatch("article/getDetails", params.detail).then((response) => {
@@ -83,7 +85,10 @@
         });
         return { article };
     },
-    created() {
+      mounted() {
+        this.observe_floating_action();
+      },
+      created() {
         this.getRelatedArticle()
         // console.log('a')
         // console.log(this.$auth)
@@ -98,9 +103,21 @@
                console.log(response)
                 this.relateds = response
             })
-            
+        },
+        observe_floating_action(){
+          let observer_first = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if(entry.isIntersecting){
+                $('.fixed-action-detail').addClass('hide');
+              }else{
+                $('.fixed-action-detail').removeClass('hide');
+              }
+            });
+          }, {threshold: 1});
+
+          document.querySelectorAll('article > p:last-child').forEach(p => { observer_first.observe(p) });
         }
     },
 }
   </script>
-   
+

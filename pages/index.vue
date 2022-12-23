@@ -1,22 +1,25 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <section class="home-content">
-            <div class="main">
-                <TopStories/>
-                <TopTrending/>
-                <ListArticles/>
-            </div>
-            <SectionSideComponentHome/>
+          <NuxtMenu></NuxtMenu>
+          <div class="main">
+              <TopStories/>
+              <TopTrending/>
+              <ListArticles/>
+          </div>
+          <SectionSideComponentHome/>
         </section>
-    </div>    
+    </div>
   </template>
-  
+
   <script>
     // import moment from 'moment'
+    import NuxtMenu from "../components/Menu";
     export default {
-        layout: "b-component/Main",
+      components: {NuxtMenu},
+      layout: "b-component/Main",
         mounted() {
-            
+
         },
         data() {
             return {
@@ -26,4 +29,4 @@
         },
     }
   </script>
-   
+

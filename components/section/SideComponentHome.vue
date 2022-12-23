@@ -1,9 +1,9 @@
 <template>
     <div class="side-menu bg-white default">
-            <a class="btn btn-primary w-100 small-rounded" href="/write">Nulis Sambil Ngopi</a>
+            <a class="btn btn-secondary w-100 small-rounded" href="/write">Nulis Sambil Ngopi</a>
             <SectionSideComponentCategories/>
+            <SectionSideComponentTrendings/>
             <div class="sticky">
-                <SectionSideComponentTrendings/>
                 <SectionSideComponentContributorsRecomend/>
                 <SectionSideComponentFooter/>
             </div>

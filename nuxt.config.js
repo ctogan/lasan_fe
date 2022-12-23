@@ -13,8 +13,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap' },
-      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Mate&display=swap' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
     ],
     script: [
       {
@@ -22,20 +23,19 @@ export default {
         type: "text/javascript",
         crossorigin: "anonymous"
       },
-      { 
-        src: '/js/app.js', 
+      {
+        src: '/js/app.js',
         type: 'text/javascript' ,
         async: true,
       },
     ],
   },
-  
-  
+
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    { src: '~/assets/css/style.css', lang: 'css' },
-    { src: '~/assets/css/custom.css', lang: 'css' },
     { src: '~/assets/css/app.css', lang: 'css' },
+    // { src: '~/assets/css/custom.css', lang: 'css' },
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -44,7 +44,7 @@ export default {
     '~/plugins/interceptor.js',
     // '~/plugins/axios.js',
      '~/plugins/Api.js',
-     '~/plugins/utils.js',
+     '~/plugins/utils.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -60,7 +60,8 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
   ],
   router: {
     //middleware: ['auth']
@@ -73,7 +74,7 @@ export default {
         codeChallengeMethod: '',
         responseType: 'code',
         endpoints: {
-          token: 'http://127.0.0.1:3001/api/auth/google', 
+          token: 'http://127.0.0.1:3001/api/auth/google',
           userInfo: 'http://127.0.0.1:3001/api/user/profile',
           tokenRequired : true
         },
@@ -97,7 +98,7 @@ export default {
     baseURL: 'http://127.0.0.1:3001',
    // prefix: '/api/'
   },
-  
+
   publicRuntimeConfig: {
     // axios: {
     //   browserBaseURL: process.env.BROWSER_BASE_URL
