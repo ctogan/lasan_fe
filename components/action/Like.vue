@@ -13,7 +13,7 @@ export default {
     methods: {
         action() {
             this.details.is_like = true;
-            this.$toast.show('Great! You have saved the article.',
+            this.$toast.show('Great! You\'ve saved the article.',
               {
                 theme: "toasted-primary",
                 iconPack : "material",

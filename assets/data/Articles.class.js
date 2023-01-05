@@ -2,7 +2,7 @@ import Author from "./Author.class";
 import Categories from "./Categories.class";
 
 export default class Articles {
-    constructor (id , slug, title, image , categories , date , article , sub_title , read_calculation, is_like , is_wish , total_views, total_likes , total_comment , author ) {
+    constructor (id , slug, title, image , categories , date , article , sub_title ,read_calculation, is_like , is_wish , total_views, total_likes , total_comment , author ) {
       this.slug = slug ?? '';
       this.title = title ?? '';
       this.image = image ?? '';

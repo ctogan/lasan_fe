@@ -2,6 +2,7 @@
     <div class="side-menu bg-white default" v-if="showSideComponent == true">
             <a class="btn btn-primary w-100 small-rounded" href="/write">Nulis Sambil Ngopi</a>
             <SectionSideComponentCategories/>
+            <SectionSideComponentTrendings/>
             <div class="sticky">
                 <SectionSideComponentContributorsRecomend/>
                 <SectionSideComponentFooter/>

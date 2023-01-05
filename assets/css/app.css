@@ -1421,7 +1421,6 @@ h2.title {
 }
 .list-article ul li .item-article {
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 .list-article ul li .item-article .snippet {
@@ -1568,44 +1567,6 @@ h2.title {
 .list-article ul li .item-article .snippet .bottom .info .read-time {
   padding-left: 10px;
 }
-.list-article ul li .item-article .snippet .bottom .action {
-  text-align: right;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 50px;
-}
-.list-article ul li .item-article .snippet .bottom .action a.like {
-  display: inline-flex;
-}
-.list-article ul li .item-article .snippet .bottom .action a.like .icon {
-  width: 18px;
-  height: 15.97px;
-  background: url("../images/love-off.svg") center no-repeat;
-  background-size: contain;
-}
-.list-article ul li .item-article .snippet .bottom .action a.like .icon:hover {
-  background: url("../images/love-hover.svg") center no-repeat;
-  background-size: contain;
-}
-.list-article ul li .item-article .snippet .bottom .action a.like.active .icon {
-  background: url("../images/love-on.svg") center no-repeat;
-  background-size: contain;
-}
-.list-article ul li .item-article .snippet .bottom .action a.share {
-  margin-right: 15px;
-  display: inline-flex;
-}
-.list-article ul li .item-article .snippet .bottom .action a.share .icon {
-  width: 18px;
-  height: 16px;
-  background: url("../images/share.svg") center no-repeat;
-  background-size: contain;
-}
-.list-article ul li .item-article .snippet .bottom .action a.share .icon:hover {
-  background: url("../images/share-hover.svg") center no-repeat;
-  background-size: contain;
-}
 .list-article ul li .item-article .image {
   width: 150px;
   height: 145px;
@@ -1620,8 +1581,83 @@ h2.title {
   object-position: center;
 }
 
+.action {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.action a.like {
+  display: inline-flex;
+}
+.action a.like .icon {
+  width: 18px;
+  height: 15.97px;
+  background: url("../images/love-off.svg") center no-repeat;
+  background-size: contain;
+}
+.action a.like .icon:hover {
+  background: url("../images/love-hover.svg") center no-repeat;
+  background-size: contain;
+}
+.action a.like.active .icon {
+  background: url("../images/love-on.svg") center no-repeat;
+  background-size: contain;
+}
+.action a.share {
+  margin-right: 23px;
+  display: inline-flex;
+}
+.action a.share .icon {
+  width: 18px;
+  height: 16px;
+  background: url("../images/share.svg") center no-repeat;
+  background-size: contain;
+}
+.action a.share .icon:hover {
+  background: url("../images/share-hover.svg") center no-repeat;
+  background-size: contain;
+}
+
 .more {
+  display: flex;
+  align-items: center;
+  width: 25px;
+  height: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 25px;
+  height: 10px;
   position: relative;
+}
+.more .dot {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background: #9FA0A3;
+  position: relative;
+}
+.more .dot:before {
+  content: "";
+  height: 4px;
+  width: 4px;
+  position: absolute;
+  top: 0;
+  background: #9FA0A3;
+  border-radius: 50%;
+  right: 8px;
+}
+.more .dot:after {
+  content: "";
+  height: 4px;
+  width: 4px;
+  position: absolute;
+  top: 0;
+  background: #9FA0A3;
+  border-radius: 50%;
+  left: -16px;
 }
 .more .popover {
   position: absolute;
@@ -1648,6 +1684,15 @@ h2.title {
   -webkit-filter: drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.2));
   transform: translateX(-50%);
 }
+.more .popover ul {
+  list-style: none;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.more .popover ul li {
+  text-align: left;
+  margin-right: 0 !important;
+}
 .more .popover ul li:not(:last-child) {
   margin-bottom: 5px;
 }
@@ -1660,6 +1705,7 @@ h2.title {
   font-size: 12px;
   line-height: 20px;
   color: #242428;
+  text-align: left;
 }
 .more .popover ul li a:hover {
   color: #FF6C39;
@@ -2280,7 +2326,7 @@ h2.title {
 }
 
 .overlay {
-  background: rgba(18, 22, 65, 0.5);
+  background: rgba(18, 22, 65, 0.3);
   position: fixed;
   top: 0;
   left: 0;
@@ -2297,6 +2343,16 @@ h2.title {
 }
 .overlay.transparan {
   background: rgba(18, 22, 65, 0);
+}
+
+.modal {
+  background: rgba(18, 22, 65, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }
 
 .auth-modal {
@@ -2357,8 +2413,7 @@ h2.title {
 }
 .auth-modal .modal-content .auth-method .link-to-register {
   font-style: normal;
-  font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   /* identical to box height, or 122% */
   text-align: center;
@@ -2875,6 +2930,40 @@ h2.title {
   /* identical to box height, or 100% */
   color: #9FA0A3;
 }
+.detail-article .profile .user .topic-name {
+  padding-right: 8px;
+  position: relative;
+  margin-right: 5px;
+  text-transform: capitalize;
+}
+.detail-article .profile .user .topic-name::after {
+  content: "";
+  width: 1.3px;
+  height: 100%;
+  background: #D7D9DD;
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.detail-article .profile .user .date {
+  padding: 0 8px;
+  position: relative;
+  margin-right: 5px;
+}
+.detail-article .profile .user .date::after {
+  content: "";
+  width: 1.3px;
+  height: 100%;
+  background: #D7D9DD;
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.detail-article .profile .user .read-time {
+  padding-left: 10px;
+}
 .detail-article .action {
   flex: 1;
   display: flex;
@@ -2884,49 +2973,9 @@ h2.title {
 .detail-article .action .like {
   display: flex;
   align-items: center;
-  margin-right: 30px;
-}
-.detail-article .action .more {
-  display: flex;
-  align-items: center;
-  width: 25px;
-  height: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 25px;
-  height: 10px;
-}
-.detail-article .action .more .dot {
-  height: 4px;
-  width: 4px;
-  border-radius: 50%;
-  background: #9FA0A3;
-  position: relative;
-}
-.detail-article .action .more .dot:before {
-  content: "";
-  height: 4px;
-  width: 4px;
-  position: absolute;
-  top: 0;
-  background: #9FA0A3;
-  border-radius: 50%;
-  right: 8px;
-}
-.detail-article .action .more .dot:after {
-  content: "";
-  height: 4px;
-  width: 4px;
-  position: absolute;
-  top: 0;
-  background: #9FA0A3;
-  border-radius: 50%;
-  left: -16px;
+  margin-right: 15px;
 }
 .detail-article article h1.title {
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -3055,10 +3104,14 @@ h2.title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 87px;
+  margin-top: 40px;
 }
 .action-detail ul {
   list-style: none;
+  display: flex;
+  align-items: center;
+}
+.action-detail ul li {
   display: flex;
   align-items: center;
 }
@@ -3069,12 +3122,55 @@ h2.title {
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  /* identical to box height, or 162% */
   color: #9FA0A3;
 }
 .action-detail ul li a img {
   width: 24px;
   height: 24px;
+}
+.action-detail ul li a.total-likes {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  /* identical to box height, or 162% */
+  color: #9FA0A3;
+}
+.action-detail ul li a.total-likes .icon {
+  width: 24px;
+  height: 24px;
+  background: url("../images/thumb.svg") center no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+.action-detail ul li a.total-likes:hover {
+  color: #242AF0;
+}
+.action-detail ul li a.total-likes:hover .icon {
+  background: url("../images/thumb-hover.svg") center no-repeat;
+  background-size: contain;
+}
+.action-detail ul li a.comment {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  /* identical to box height, or 162% */
+  color: #9FA0A3;
+}
+.action-detail ul li a.comment .icon {
+  width: 22px;
+  height: 22px;
+  background: url("../images/message.svg") center no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+.action-detail ul li a.comment:hover {
+  color: #242AF0;
+}
+.action-detail ul li a.comment:hover .icon {
+  background: url("../images/message-hover.svg") center no-repeat;
+  background-size: contain;
 }
 .action-detail ul li:not(:last-child) {
   margin-right: 20px;
@@ -3101,18 +3197,61 @@ h2.title {
   padding: 0 30px;
 }
 .fixed-action-detail ul li a {
+  display: inline-flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #9FA0A3;
+}
+.fixed-action-detail ul li a img {
+  width: 32px;
+  height: 32px;
+}
+.fixed-action-detail ul li a.total-likes {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
   /* identical to box height, or 162% */
   color: #9FA0A3;
-  display: flex;
-  align-items: center;
 }
-.fixed-action-detail ul li a img {
+.fixed-action-detail ul li a.total-likes .icon {
   width: 32px;
   height: 32px;
+  background: url("../images/thumb.svg") center no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+.fixed-action-detail ul li a.total-likes:hover {
+  color: #242AF0;
+}
+.fixed-action-detail ul li a.total-likes:hover .icon {
+  background: url("../images/thumb-hover.svg") center no-repeat;
+  background-size: contain;
+}
+.fixed-action-detail ul li a.comment {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  /* identical to box height, or 162% */
+  color: #9FA0A3;
+}
+.fixed-action-detail ul li a.comment .icon {
+  width: 32px;
+  height: 32px;
+  background: url("../images/message.svg") center no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+.fixed-action-detail ul li a.comment:hover {
+  color: #242AF0;
+}
+.fixed-action-detail ul li a.comment:hover .icon {
+  background: url("../images/message-hover.svg") center no-repeat;
+  background-size: contain;
 }
 
 .comment-section {
@@ -3809,6 +3948,68 @@ h2.title {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 600px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #1b0668;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=app.css.map */

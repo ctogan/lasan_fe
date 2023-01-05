@@ -8,46 +8,53 @@
                     </div>
                     <div class="user">
                         <div class="name">{{article.author.name}}</div>
-                        <div class="info">{{article.categories.name}}</div>
+                        <div class="info">
+                          <span class="topic-name capitalize">{{article.categories.topic_name}}</span>
+                          <span class="date">{{$moment(article.created_at).format('D MMMM YYYY')}}</span>
+                          <span class="read-time">{{article.read_calculation}} minute read</span>
+                        </div>
                     </div>
                 </div>
                 <div class="action">
-                    <a class="like" href="javascript:void(0)">
-                        <ActionLike :details="article"/>
-                    </a>
-                    <a class="more" href="more">
-                        <div class="dot"></div>
-                    </a>
+                  <ActionShare :details="article"></ActionShare>
+                  <ActionLike :details="article"/>
+                  <ActionMore :details="article"></ActionMore>
                 </div>
             </div>
             <article>
                 <h1 class="title">{{article.title}}</h1>
-                <img class="mb-8" src="~/assets/images/detail-img.jpg" alt="" width="100%">
-                <div class="content">
-                    {{article.article}}
-                </div>
+                <img class="mb-8" :src="article.image" :alt="article.title" width="100%">
+                <div class="content" v-html="article.article"></div>
                 <p></p>
             </article>
-            <div class="action-detail">
+            <div class="action-detail" v-if="article">
                 <div>
                     <ul>
                         <li><a href=""><img src="~/assets/images/eye-open.svg" alt="" class="mr-1">{{article.total_views}}</a></li>
-                        <li><a href=""><img src="~/assets/images/thumb.svg" alt="" class="mr-1">{{article.total_likes}}</a></li>
-                        <li><a href=""><img src="~/assets/images/message.svg" alt="" class="mr-1">{{article.total_comment}}</a></li>
+                        <li>
+                          <a href="javascript:void(0)" class="total-likes">
+                            <span class="icon"></span>
+                            {{article.total_likes}}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)" class="comment">
+                            <span class="icon"></span>
+                            {{article.total_comment}}
+                          </a>
+                        </li>
                     </ul>
                 </div>
-                <div>
-                    <ul>
-                        <li><a href=""><img src="~/assets/images/share-2.svg" alt=""></a></li>
-                        <li><ActionLike :details="article"/></li>
-                        <li><a href=""><img src="~/assets/images/more.svg" alt=""></a></li>
-                    </ul>
+                <div class="action">
+                  <ActionShare :details="article"></ActionShare>
+                  <ActionLike :details="article"/>
+                  <ActionMore :details="article"></ActionMore>
                 </div>
             </div>
         </div>
-        <div class="recommendation">
+        <div class="recommendation mb-10">
             <div class="list-article" v-if="relateds">
-                <h3 class="title mb-6">Lebih banyak tentang Interior</h3>
+                <h3 class="title mb-6">Lebih banyak tentang <span class="capitalize">{{article.categories.topic_name}}</span></h3>
                 <ul>
                     <li v-for="(related , index) in relateds" :key="index">
                         <MediumArticle :article="related"/>
@@ -56,7 +63,7 @@
             </div>
         </div>
         <CommentList :article="article"/>
-        <ActionDetail/>
+        <ActionDetail :details="article"/>
     </div>
 </template>
 
@@ -90,17 +97,12 @@
       },
       created() {
         this.getRelatedArticle()
-        // console.log('a')
-        // console.log(this.$auth)
-        // console.log('c')
-        //console.log(this.details)
     },
     components: { Like, MediumArticle, CommentList },
 
     methods: {
         getRelatedArticle(){
             this.$store.dispatch('article/getRelatedArticle' , 'slug').then((response) => {
-               console.log(response)
                 this.relateds = response
             })
         },

@@ -10,11 +10,9 @@
                         {{article?.author?.name}}
                     </a>
                 </div>
-                <a class="more" href="more">
-                    <div class="dot"></div>
-                </a>
+              <ActionMore :details="article"></ActionMore>
             </div>
-            <NuxtLink :to="'/artcile/'+article.slug">
+            <NuxtLink :to="'/'+article.slug">
                 <div class="title">
                     <h3>
                        {{article?.title}}
@@ -28,13 +26,11 @@
                 <div class="info">
                     <span class="topic-name">{{article?.categories.topic_name}}</span>
                     <span class="date">{{$moment(article?.date).format('D MMMM YYYY')}}</span>
-                    <span class="read-time">{{article?.read_calculation}} minute</span>
+                    <span class="read-time">{{article?.read_calculation}} minute read</span>
                 </div>
                 <div class="action">
-                    <a class="share" href="">
-                        <img src="~/assets/images/share.svg" alt="">
-                    </a>
-                    <Like :details="article" ></Like>
+                  <NuxActionShare :details="article"></NuxActionShare>
+                  <Like :details="article"></Like>
                 </div>
             </div>
         </div>
@@ -46,6 +42,7 @@
 
 <script lang="ts">
 import Like from '../action/Like.vue';
+import NuxActionShare from "../action/Share.vue";
 export default {
     name: "NuxtMediumArticle",
     props: ["article"],
@@ -54,7 +51,7 @@ export default {
             this.$store.dispatch("article/likeArticle", this.article);
         },
     },
-    components: { Like }
+    components: {NuxActionShare, Like }
 }
 </script>
 

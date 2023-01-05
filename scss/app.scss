@@ -770,7 +770,7 @@ h2{
       margin-bottom: 30px;
       .item-article{
         display: flex;
-        align-items: center;
+        //align-items: center;
         justify-content: space-between;
         .snippet{
           width: calc(100% - 150px);
@@ -859,48 +859,6 @@ h2{
                 padding-left: 10px;
               }
             }
-            .action{
-              text-align: right;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              width: 50px;
-              a{
-                &.like{
-                  display: inline-flex;
-                  .icon{
-                    width: 18px;
-                    height: 15.97px;
-                    background: url('../images/love-off.svg') center no-repeat;
-                    background-size: contain;
-                    &:hover{
-                      background: url('../images/love-hover.svg') center no-repeat;
-                      background-size: contain;
-                    }
-                  }
-                  &.active{
-                    .icon{
-                      background: url('../images/love-on.svg') center no-repeat;
-                      background-size: contain;
-                    }
-                  }
-                }
-                &.share{
-                  margin-right: 15px;
-                  display: inline-flex;
-                  .icon{
-                    width: 18px;
-                    height: 16px;
-                    background: url('../images/share.svg') center no-repeat;
-                    background-size: contain;
-                    &:hover{
-                      background: url('../images/share-hover.svg') center no-repeat;
-                      background-size: contain;
-                    }
-                  }
-                }
-              }
-            }
           }
         }
         .image{
@@ -920,7 +878,54 @@ h2{
     }
   }
 }
+.action{
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //width: 50px;
+  a{
+    &.like{
+      display: inline-flex;
+      .icon{
+        width: 18px;
+        height: 15.97px;
+        background: url('../images/love-off.svg') center no-repeat;
+        background-size: contain;
+        &:hover{
+          background: url('../images/love-hover.svg') center no-repeat;
+          background-size: contain;
+        }
+      }
+      &.active{
+        .icon{
+          background: url('../images/love-on.svg') center no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+    &.share{
+      margin-right: 23px;
+      display: inline-flex;
+      .icon{
+        width: 18px;
+        height: 16px;
+        background: url('../images/share.svg') center no-repeat;
+        background-size: contain;
+        &:hover{
+          background: url('../images/share-hover.svg') center no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+  }
+}
 .more{
+  display: flex;
+  align-items: center;
+  width: 25px;
+  height: 10px;
+  @include more-dot();
   position: relative;
   .popover{
     position: absolute;
@@ -947,7 +952,12 @@ h2{
       transform: translateX(-50%);
     }
     ul{
+      list-style: none;
+      flex-direction: column;
+      align-items: flex-start;
       li{
+        text-align: left;
+        margin-right: 0!important;
         &:not(:last-child){
           margin-bottom: 5px;
         }
@@ -960,6 +970,7 @@ h2{
           font-size: 12px;
           line-height: 20px;
           color: #242428;
+          text-align: left;
           &:hover{
             color:#FF6C39;
           }
@@ -1552,8 +1563,7 @@ h2{
   pointer-events: none;
 }
 .overlay{
-  // display: none;
-  background: rgba(18, 22, 65, 0.5);
+  background: rgba(18, 22, 65, 0.3);
   position: fixed;
   top:0;
   left: 0;
@@ -1571,6 +1581,18 @@ h2{
   &.transparan{
     background: rgba(18, 22, 65, 0);
   }
+}
+.modal {
+  background: rgba(18, 22, 65, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.modal{
+
 }
 .auth-modal{
   width: 680px;
@@ -1626,8 +1648,7 @@ h2{
       }
       .link-to-register{
         font-style: normal;
-        font-weight: 300;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 22px;
         /* identical to box height, or 122% */
         text-align: center;
@@ -1975,6 +1996,36 @@ h2{
         /* identical to box height, or 100% */
         color: #9FA0A3;
       }
+      @mixin dot {
+        content: '';
+        width: 1.3px;
+        height: 100%;
+        background: #D7D9DD;
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .topic-name{
+        padding-right: 8px;
+        position: relative;
+        margin-right: 5px;
+        text-transform: capitalize;
+        &::after{
+          @include dot()
+        }
+      }
+      .date{
+        padding: 0 8px;
+        position: relative;
+        margin-right: 5px;
+        &::after{
+          @include dot()
+        }
+      }
+      .read-time{
+        padding-left: 10px;
+      }
     }
   }
   .action{
@@ -1985,20 +2036,12 @@ h2{
     .like{
       display: flex;
       align-items: center;
-      margin-right: 30px;
-    }
-    .more{
-      display: flex;
-      align-items: center;
-      width: 25px;
-      height: 10px;
-      @include more-dot();
+      margin-right: 15px;
     }
   }
   article{
     h1{
       &.title{
-        font-family: 'Poppins';
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
@@ -2140,12 +2183,14 @@ h2{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 87px;
+  margin-top: 40px;
   ul{
     list-style: none;
     display: flex;
     align-items: center;
     li{
+      display: flex;
+      align-items: center;
       a{
         display: inline-flex;
         align-items: center;
@@ -2153,11 +2198,54 @@ h2{
         font-weight: 400;
         font-size: 14px;
         line-height: 26px;
-        /* identical to box height, or 162% */
         color: #9FA0A3;
         img{
           width: 24px;
           height: 24px;
+        }
+        &.total-likes{
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 26px;
+          /* identical to box height, or 162% */
+          color: #9FA0A3;
+          .icon{
+            width: 24px;
+            height: 24px;
+            background: url("../images/thumb.svg") center no-repeat;
+            background-size: contain;
+            margin-right: 5px;
+          }
+          &:hover{
+            color:#242AF0;
+            .icon{
+              background: url("../images/thumb-hover.svg") center no-repeat;
+              background-size: contain;
+            }
+          }
+        }
+        &.comment{
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 26px;
+          /* identical to box height, or 162% */
+          color: #9FA0A3;
+          .icon{
+            width: 22px;
+            height: 22px;
+            background: url("../images/message.svg") center no-repeat;
+            background-size: contain;
+            margin-right: 5px;
+          }
+          &:hover{
+            color:#242AF0;
+            .icon{
+              background: url("../images/message-hover.svg") center no-repeat;
+              background-size: contain;
+            }
+          }
         }
       }
       &:not(:last-child){
@@ -2186,17 +2274,60 @@ h2{
     padding: 0 30px;
     li{
       a{
+        display: inline-flex;
+        align-items: center;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 26px;
-        /* identical to box height, or 162% */
         color: #9FA0A3;
-        display: flex;
-        align-items: center;
         img{
           width: 32px;
           height: 32px;
+        }
+        &.total-likes{
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 26px;
+          /* identical to box height, or 162% */
+          color: #9FA0A3;
+          .icon{
+            width: 32px;
+            height: 32px;
+            background: url("../images/thumb.svg") center no-repeat;
+            background-size: contain;
+            margin-right: 5px;
+          }
+          &:hover{
+            color:#242AF0;
+            .icon{
+              background: url("../images/thumb-hover.svg") center no-repeat;
+              background-size: contain;
+            }
+          }
+        }
+        &.comment{
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 26px;
+          /* identical to box height, or 162% */
+          color: #9FA0A3;
+          .icon{
+            width: 32px;
+            height: 32px;
+            background: url("../images/message.svg") center no-repeat;
+            background-size: contain;
+            margin-right: 5px;
+          }
+          &:hover{
+            color:#242AF0;
+            .icon{
+              background: url("../images/message-hover.svg") center no-repeat;
+              background-size: contain;
+            }
+          }
         }
       }
     }
@@ -2819,4 +2950,66 @@ h2{
       }
     }
   }
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 600px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #1b0668;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }

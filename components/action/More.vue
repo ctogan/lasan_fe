@@ -1,19 +1,29 @@
 <template>
-  <a class="more"  v-click-outside="hide" href="javascript:void(0)" @click="show($event)">
-    <div class="dot"></div>
-    <div class="popover">
-      <ul>
-        <li><a class="popover-link" @click="follow_author(details.author.username)">Follow this author</a></li>
-        <li><a class="popover-link" @click="report(details.slug)">Report</a></li>
-      </ul>
-    </div>
-  </a>
+  <div>
+    <a class="more"  v-click-outside="hide" href="javascript:void(0)" @click="show($event)">
+      <div class="dot"></div>
+      <div class="popover">
+        <ul>
+          <li><a class="popover-link" @click="follow_author(details.author.username)">Follow this author</a></li>
+          <li><a class="popover-link" @click="open_report_modal">Report</a></li>
+        </ul>
+      </div>
+    </a>
+<!--    <NuxtReportModal :show="show_modal_report"></NuxtReportModal>-->
+  </div>
 </template>
 
 <script>
+import NuxtReportModal from "../modal/ReportModal";
 export default {
   name: "ActionMore",
+  components: {NuxtReportModal},
   props : ['details'],
+  data(){
+    return {
+      show_modal_report : false
+    }
+  },
   methods:{
     show(event){
       var elems = document.querySelectorAll(".more.active");
@@ -23,12 +33,12 @@ export default {
       event.target.closest('a').classList.add('active');
       let myTimeOut = setTimeout(function (){
         event.target.closest('a').classList.remove('active');
-      },5000);
+      },4000);
 
       $(".popover").mouseout( function () {
         myTimeOut = setTimeout(function (){
           event.target.closest('a').classList.remove('active');
-        },5000);
+        },4000);
       }).mouseover( function () {
         clearTimeout(myTimeOut);
       });
@@ -44,8 +54,8 @@ export default {
     follow_author(username){
       console.log(username)
     },
-    report(slug){
-      console.log(slug)
+    open_report_modal(){
+      this.show_modal_report = true;
     }
   }
 }
